@@ -1,5 +1,6 @@
 import re
 
+import Huffman
 import LZW
 
 if __name__ == "__main__":
@@ -14,5 +15,5 @@ if __name__ == "__main__":
         print(f"LZW is {((len(compressed_text) / len(ascii_text)) * 100):.1f}% of ASCII")
     elif choice == "decompress":
         txt = input("Compressed Text: ")
-        txt = re.sub('[,.-]', "", txt)
-        print("Decompressed Text: ", LZW.decompress([int(code) for code in re.split('\s+', txt)]))
+        txt = re.sub('[,.-]', " ", txt)
+        print("Decompressed Text: ", LZW.decompress([int(code) for code in re.split(' +', txt)]))
