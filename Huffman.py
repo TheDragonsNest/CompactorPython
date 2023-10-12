@@ -40,8 +40,8 @@ if __name__ == "__main__":
 
     huffman_tree = build_tree(char_freq_tuples)
 
-    huffman_codes = {}
-    generate_codes(huffman_tree, "", huffman_codes)
+    codes = {}
+    generate_codes(huffman_tree, "", codes)
 
-    for char, code in huffman_codes.items():
+    for char, code in codes.items():
         print(f"Character: {char}, Huffman Code: {code}")
