@@ -12,8 +12,8 @@ class Node:
         return self.freq < other.freq
 
 
-def build_tree(char_freq_tuples):
-    heap = [Node(char, freq) for char, freq in char_freq_tuples]
+def build_tree(char_freq_disc):
+    heap = [Node(char, freq) for char, freq in char_freq_disc.items()]
     heapq.heapify(heap)
 
     while len(heap) > 1:
@@ -34,14 +34,3 @@ def generate_codes(root, prev_code="", codes={}):
         generate_codes(root.left, prev_code + "0", codes)
         generate_codes(root.right, prev_code + "1", codes)
 
-
-if __name__ == "__main__":
-    char_freq_tuples = [('a', 5), ('b', 9), ('c', 12), ('d', 13), ('e', 16), ('f', 45)]
-
-    huffman_tree = build_tree(char_freq_tuples)
-
-    codes = {}
-    generate_codes(huffman_tree, "", codes)
-
-    for char, code in codes.items():
-        print(f"Character: {char}, Huffman Code: {code}")
