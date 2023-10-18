@@ -13,7 +13,7 @@ def compress(txt):
             current_word = c
 
     result.append(dictionary[current_word])
-    print(dictionary)
+
     return result
 
 
@@ -37,5 +37,5 @@ def decompress(txt):
             next_code += 1
 
         current_word = word
-    print(dictionary)
+
     return ''.join(result)

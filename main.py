@@ -19,6 +19,7 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.huffman and args.decompress:
+        # TODO
         print("NYI")
     elif args.huffman and args.compress:
         # huffman decompression
@@ -33,23 +34,28 @@ if __name__ == "__main__":
 
         for char, code in codes.items():
             print(f"Character: {char}, Huffman Code: {code}")
-        # TODO: write output list to YAML file
+
+        with open("output.yml", 'w') as file:
+            yaml.safe_dump(codes, file)
 
     elif args.lzw and args.decompress:
         with open(args.input_path, 'r') as file:
             codes = yaml.safe_load(file)
 
-        print("Decompressed Text: ", LZW.decompress(codes))
-        # TODO: write output list to YAML file
+        output = LZW.decompress(codes)
+        print("Decompressed Text: ", output)
+        with open("output.yml", 'w') as file:
+            yaml.safe_dump(output, file)
 
     elif args.lzw and args.compress:
         with open(args.input_path, 'r') as file:
             text = yaml.safe_load(file)[0]
 
         ascii_text = [ord(char) for char in text]
-        compressed_text = LZW.compress(text)
+        output = LZW.compress(text)
 
         print("ASCII: ", ascii_text)
         print("LZW:   ", compressed_text)
         print(f"LZW is {((len(compressed_text) / len(ascii_text)) * 100):.1f}% of ASCII")
-        # TODO: write output list to YAML file
+        with open("output.yml", 'w') as file:
+            yaml.safe_dump(output, file)
