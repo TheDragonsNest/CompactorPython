@@ -39,3 +39,4 @@ def decompress(txt):
         current_word = word
 
     return ''.join(result)
+

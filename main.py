@@ -20,27 +20,27 @@ if __name__ == "__main__":
 
     if args.huffman and args.decompress:
         with open(args.input_path, 'r') as file:
-        	dict = {}
-            text = ""
-        	Huffman.decompress(dict, text)
-        # TODO: huffman decompression
-        print("WIP")
+            file_contents = yaml.safe_load(file)
+
+        code_table = file_contents[1]
+        code_table = {a:b for b, a in code_table.items()}
+
+        text = file_contents[0]
+
+        decompressed_text = Huffman.decompress(code_table, text)
+
+        print(decompressed_text)
+
     elif args.huffman and args.compress:
-        # NOTE: Only generates Huffman codes TODO: Make it able to compress data as well
         with open(args.input_path, 'r') as file:
-            char_freq_dict = yaml.safe_load(file)
-            print(char_freq_dict)
+            text = yaml.safe_load(file)[0]
 
-        huffman_tree = Huffman.build_tree(char_freq_dict)
+        compression_result = Huffman.compress(text)
 
-        codes = {}
-        Huffman.generate_codes(huffman_tree, "", codes)
-
-        for char, code in codes.items():
-            print(f"Character: {char}, Huffman Code: {code}")
+        print(compression_result[0])
 
         with open("output.yml", 'w') as file:
-            yaml.safe_dump(codes, file)
+            yaml.safe_dump(compression_result, file)
 
     elif args.lzw and args.decompress:
         with open(args.input_path, 'r') as file:
@@ -58,6 +58,7 @@ if __name__ == "__main__":
         ascii_text = [ord(char) for char in text]
         output = LZW.compress(text)
 
+        # TODO
         print("ASCII: ", ascii_text)
         print("LZW:   ", compressed_text)
         print(f"LZW is {((len(compressed_text) / len(ascii_text)) * 100):.1f}% of ASCII")
