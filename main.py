@@ -11,8 +11,8 @@ if __name__ == "__main__":
     compression_group.add_argument("-H", "--huffman", action="store_true", help="Use Huffman")
     compression_group.add_argument("-L", "--lzw", action="store_true", help="Use LZW")
     direction_group = parser.add_mutually_exclusive_group()
-    direction_group.add_argument("-D", "--decompress", action="store_true")
-    direction_group.add_argument("-C", "--compress", action="store_true")
+    direction_group.add_argument("-D", "--decompress", action="store_true", help="decompress input")
+    direction_group.add_argument("-C", "--compress", action="store_true", help="compress input")
 
     parser.add_argument("input_path", type=str, help="Filepath to input file in YAML format")
 
