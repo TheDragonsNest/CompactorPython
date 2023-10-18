@@ -19,10 +19,10 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.huffman and args.decompress:
-        # TODO
+        # TODO: huffman decompression
         print("NYI")
     elif args.huffman and args.compress:
-        # huffman decompression
+        # NOTE: Only generates Huffman codes TODO: Make it able to compress data as well
         with open(args.input_path, 'r') as file:
             char_freq_dict = yaml.safe_load(file)
             print(char_freq_dict)
