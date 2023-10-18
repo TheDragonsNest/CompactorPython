@@ -19,8 +19,12 @@ if __name__ == "__main__":
     args = parser.parse_args()
 
     if args.huffman and args.decompress:
+        with open(args.input_path, 'r') as file:
+        	dict = {}
+            text = ""
+        	Huffman.decompress(dict, text)
         # TODO: huffman decompression
-        print("NYI")
+        print("WIP")
     elif args.huffman and args.compress:
         # NOTE: Only generates Huffman codes TODO: Make it able to compress data as well
         with open(args.input_path, 'r') as file:
