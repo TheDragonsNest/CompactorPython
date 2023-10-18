@@ -23,7 +23,7 @@ if __name__ == "__main__":
             file_contents = yaml.safe_load(file)
 
         code_table = file_contents[1]
-        code_table = {a:b for b, a in code_table.items()}
+        code_table = {a: b for b, a in code_table.items()}
 
         text = file_contents[0]
 
@@ -56,11 +56,10 @@ if __name__ == "__main__":
             text = yaml.safe_load(file)[0]
 
         ascii_text = [ord(char) for char in text]
-        output = LZW.compress(text)
+        compressed_text = LZW.compress(text)
 
-        # TODO
         print("ASCII: ", ascii_text)
         print("LZW:   ", compressed_text)
         print(f"LZW is {((len(compressed_text) / len(ascii_text)) * 100):.1f}% of ASCII")
         with open("output.yml", 'w') as file:
-            yaml.safe_dump(output, file)
+            yaml.safe_dump(compressed_text, file)
