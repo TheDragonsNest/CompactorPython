@@ -13,7 +13,7 @@ def compress(txt):
             current_word = c
 
     result.append(dictionary[current_word])
-
+    print(dictionary)
     return result
 
 
@@ -32,9 +32,10 @@ def decompress(txt):
             raise ValueError("Code out of Bounds. Invalid input")
 
         result.extend(word)
-        dictionary[next_code] = current_word + word[0]
-        next_code += 1
+        if current_word != "":
+            dictionary[next_code] = current_word + word[0]
+            next_code += 1
 
         current_word = word
-
+    print(dictionary)
     return ''.join(result)
