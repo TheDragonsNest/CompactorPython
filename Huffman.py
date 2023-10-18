@@ -33,4 +33,20 @@ def generate_codes(root, prev_code="", codes={}):
             codes[root.char] = prev_code
         generate_codes(root.left, prev_code + "0", codes)
         generate_codes(root.right, prev_code + "1", codes)
+        
+def decompress(code_table, text)
+    current_char = ""
+    output = ""
+    
+	for c in text:
+    	current_word = current_word + c
+        
+        if current_word in code_table:
+            output = output + code_table[current_word]
+            current_word = ""
+    
+    return output
+    
+    
+    
 
