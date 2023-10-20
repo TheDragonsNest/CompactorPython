@@ -36,6 +36,8 @@ if __name__ == "__main__":
             text = yaml.safe_load(file)[0]
 
         compression_result = Huffman.compress(text)
+        ascii_text = [ord(char) for char in text]
+        print(f"Huffman is {((len(compression_result[0]) / len(ascii_text)) * 100):.1f}% of ASCII")
 
         print(compression_result[0])
 
